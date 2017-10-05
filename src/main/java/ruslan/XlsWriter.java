@@ -3,12 +3,16 @@ package ruslan;
 /**
  * Created by ruslan on 22.05.2017.
  */
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Logger;
 
+import org.apache.poi.ss.usermodel.RichTextString;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.streaming.SXSSFSheet;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
@@ -52,9 +56,31 @@ public class XlsWriter {
         currSheet = sheetNumber;
     }
 
-    protected void createCell(String text) {
-        row.createCell(cellNumber++).setCellValue(text);
+
+    protected void createCell(double value) {
+        row.createCell(cellNumber++).setCellValue(value);
     }
+
+    protected void createCell(String value) {
+        row.createCell(cellNumber++).setCellValue(value);
+    }
+
+    protected void createCell(boolean value) {
+        row.createCell(cellNumber++).setCellValue(value);
+    }
+
+    protected void createCell(Date value) {
+        row.createCell(cellNumber++).setCellValue(value);
+    }
+
+    protected void createCell(Calendar value) {
+        row.createCell(cellNumber++).setCellValue(value);
+    }
+
+    protected void createCell(RichTextString value) {
+        row.createCell(cellNumber++).setCellValue(value);
+    }
+
 
     protected void finishRow() {
         ++rowNumber[currSheet];

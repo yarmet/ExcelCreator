@@ -1,6 +1,7 @@
 package ruslan;
 
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * Created by ruslan on 22.05.2017.
@@ -22,14 +23,14 @@ public class Main {
 
         xlsWriter.createRow();
         xlsWriter.createCell("cell1");
-        xlsWriter.createCell("cell2");
-        xlsWriter.createCell("cell3");
+        xlsWriter.createCell(true);
+        xlsWriter.createCell(new Date());
         xlsWriter.finishRow();
 
         xlsWriter.createRow();
         xlsWriter.createCell("cell4");
-        xlsWriter.createCell("cell5");
-        xlsWriter.createCell("cell6");
+        xlsWriter.createCell(false);
+        xlsWriter.createCell(new Date());
         xlsWriter.finishRow();
 
         //--------------------------------------------------------------------------------------------------------------
