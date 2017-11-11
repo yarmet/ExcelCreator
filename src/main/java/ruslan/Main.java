@@ -1,5 +1,10 @@
 package ruslan;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFColor;
+
 import java.io.IOException;
 import java.util.Date;
 
@@ -13,49 +18,43 @@ public class Main {
 
         XlsWriter xlsWriter = new XlsWriter(2);
 
+
+        XSSFCellStyle greenBackground = xlsWriter.createXssfCellStyle();
+        greenBackground.setFillForegroundColor(new XSSFColor(new java.awt.Color(50, 150, 50)));
+        greenBackground.setFillPattern(CellStyle.SOLID_FOREGROUND);
+
+        XSSFCellStyle redBackground = xlsWriter.createXssfCellStyle();
+        redBackground.setFillForegroundColor(new XSSFColor(new java.awt.Color(150, 50, 50)));
+        redBackground.setFillPattern(CellStyle.SOLID_FOREGROUND);
         //--------------------------------------------------------------------------------------------------------------
+
         xlsWriter.changeSheet(0);
         xlsWriter.establishSheetName("лист1");
 
-        String[] columnNames = {"column1" , "column2" , "column3"};
+        String[] columnNames = {"column1", "column2", "column3"};
 
+        xlsWriter.mergeCells(10, 12, 3, 3);
         xlsWriter.createheader(columnNames);
+
 
         xlsWriter.createRow();
         xlsWriter.createCell("cell1");
         xlsWriter.createCell(true);
-        xlsWriter.createCell(new Date());
+
+        Cell cell1 = xlsWriter.createCell(new Date());
+        cell1.setCellStyle(redBackground);
         xlsWriter.finishRow();
+
 
         xlsWriter.createRow();
         xlsWriter.createCell("cell4");
         xlsWriter.createCell(false);
-        xlsWriter.createCell(new Date());
+
+        Cell cell = xlsWriter.createCell(new Date());
+        cell.setCellStyle(greenBackground);
+
         xlsWriter.finishRow();
-
-        //--------------------------------------------------------------------------------------------------------------
-        xlsWriter.changeSheet(1);
-        xlsWriter.establishSheetName("лист2");
-
-        String[] columnNames1 = {"column1" , "column2" , "column3"};
-
-        xlsWriter.createheader(columnNames1);
-
-        xlsWriter.createRow();
-        xlsWriter.createCell("cell111111");
-        xlsWriter.createCell("cell222222");
-        xlsWriter.createCell("cell333333");
-        xlsWriter.finishRow();
-
-        xlsWriter.createRow();
-        xlsWriter.createCell("cell444444");
-        xlsWriter.createCell("cell555555");
-        xlsWriter.createCell("cell666666");
-        xlsWriter.finishRow();
-
-
 
         xlsWriter.saveInFile("myexcel");
-
     }
 }
