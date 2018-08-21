@@ -47,27 +47,27 @@ public class XlsWriter {
         currSheetNumber = sheetNumber;
     }
 
-    public Cell createCell(double value) {
+    public Cell createCellAngGet(double value) {
         return customSheetWrappers[currSheetNumber].createCellAngGet((cell) -> cell.setCellValue(value));
     }
 
-    public Cell createCell(String value) {
+    public Cell createCellAngGet(String value) {
         return customSheetWrappers[currSheetNumber].createCellAngGet((cell) -> cell.setCellValue(value));
     }
 
-    public Cell createCell(boolean value) {
+    public Cell createCellAngGet(boolean value) {
         return customSheetWrappers[currSheetNumber].createCellAngGet((cell) -> cell.setCellValue(value));
     }
 
-    public Cell createCell(Date value) {
+    public Cell createCellAngGet(Date value) {
         return customSheetWrappers[currSheetNumber].createCellAngGet((cell) -> cell.setCellValue(value));
     }
 
-    public Cell createCell(Calendar value) {
+    public Cell createCellAngGet(Calendar value) {
         return customSheetWrappers[currSheetNumber].createCellAngGet((cell) -> cell.setCellValue(value));
     }
 
-    public Cell createCell(RichTextString value) {
+    public Cell createCellAngGet(RichTextString value) {
         return customSheetWrappers[currSheetNumber].createCellAngGet((cell) -> cell.setCellValue(value));
     }
 
@@ -79,7 +79,7 @@ public class XlsWriter {
         return (XSSFCellStyle) workbook.createCellStyle();
     }
 
-    public void createRow() {
+    public void createNewRow() {
         customSheetWrappers[currSheetNumber].createRow();
     }
 

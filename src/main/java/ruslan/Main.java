@@ -31,27 +31,27 @@ public class Main {
         xlsWriter.establishCurrentSheetName("лист1");
 
 
-        xlsWriter.createRow();
-        xlsWriter.createCell(123);
-        xlsWriter.createCell(23);
+        xlsWriter.createNewRow();
+        xlsWriter.createCellAngGet(123);
+        xlsWriter.createCellAngGet(23);
 
-        xlsWriter.createRow();
-        xlsWriter.createCell(33);
-        xlsWriter.createCell(44);
+        xlsWriter.createNewRow();
+        xlsWriter.createCellAngGet(33);
+        xlsWriter.createCellAngGet(44);
 
 
         xlsWriter.changeSheet(1);
 
-        xlsWriter.createRow();
-        xlsWriter.createCell(77);
-        xlsWriter.createCell(88);
+        xlsWriter.createNewRow();
+        xlsWriter.createCellAngGet(77);
+        xlsWriter.createCellAngGet(88);
 
 
 
         xlsWriter.changeSheet(0);
 
-        xlsWriter.createCell(11);
-        xlsWriter.createCell(11);
+        xlsWriter.createCellAngGet(11);
+        xlsWriter.createCellAngGet(11);
 
         xlsWriter.saveInFile("myexcel");
     }
