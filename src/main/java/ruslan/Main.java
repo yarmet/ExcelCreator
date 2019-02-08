@@ -29,29 +29,38 @@ public class Main {
 
         xlsWriter.changeSheet(0);
         xlsWriter.establishCurrentSheetName("лист1");
-
-
         xlsWriter.createNewRow();
-        xlsWriter.createCellAngGet(123);
-        xlsWriter.createCellAngGet(23);
 
-        xlsWriter.createNewRow();
-        xlsWriter.createCellAngGet(33);
-        xlsWriter.createCellAngGet(44);
+
+        xlsWriter.createCellAndGet(123);
+        xlsWriter.createCellAndGet(23);
+
+
+        xlsWriter.createCellAndGet(33);
+
+        Double teslDouble = null;
+        xlsWriter.createCellAndGet(teslDouble);
+        xlsWriter.createCellAndGet(44);
+
+        xlsWriter.createCellAndGet(77);
+
+        Boolean teslBoolean = null;
+        xlsWriter.createCellAndGet(teslBoolean);
+
+
+        xlsWriter.createCellAndGet(33);
+
 
 
         xlsWriter.changeSheet(1);
 
-        xlsWriter.createNewRow();
-        xlsWriter.createCellAngGet(77);
-        xlsWriter.createCellAngGet(88);
 
 
 
         xlsWriter.changeSheet(0);
 
-        xlsWriter.createCellAngGet(11);
-        xlsWriter.createCellAngGet(11);
+        xlsWriter.createCellAndGet(11);
+        xlsWriter.createCellAndGet(11);
 
         xlsWriter.saveInFile("myexcel");
     }

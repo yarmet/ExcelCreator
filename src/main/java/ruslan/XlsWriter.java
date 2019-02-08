@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.function.Consumer;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.RichTextString;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.util.CellRangeAddress;
@@ -47,27 +48,42 @@ public class XlsWriter {
         currSheetNumber = sheetNumber;
     }
 
-    public Cell createCellAngGet(double value) {
+
+    public Cell createCellAndGet(Double value) {
+        return value == null ? createEmptyCellAndGet() : createCellAndGet((double) value);
+    }
+
+    public Cell createCellAndGet(Boolean value) {
+        return value == null ? createEmptyCellAndGet() : createCellAndGet((boolean) value);
+    }
+
+
+    public Cell createEmptyCellAndGet() {
+        return customSheetWrappers[currSheetNumber].createCellAngGet((cell) -> cell.setCellType(CellType.BLANK));
+
+    }
+
+    public Cell createCellAndGet(double value) {
         return customSheetWrappers[currSheetNumber].createCellAngGet((cell) -> cell.setCellValue(value));
     }
 
-    public Cell createCellAngGet(String value) {
+    public Cell createCellAndGet(String value) {
         return customSheetWrappers[currSheetNumber].createCellAngGet((cell) -> cell.setCellValue(value));
     }
 
-    public Cell createCellAngGet(boolean value) {
+    public Cell createCellAndGet(boolean value) {
         return customSheetWrappers[currSheetNumber].createCellAngGet((cell) -> cell.setCellValue(value));
     }
 
-    public Cell createCellAngGet(Date value) {
+    public Cell createCellAndGet(Date value) {
         return customSheetWrappers[currSheetNumber].createCellAngGet((cell) -> cell.setCellValue(value));
     }
 
-    public Cell createCellAngGet(Calendar value) {
+    public Cell createCellAndGet(Calendar value) {
         return customSheetWrappers[currSheetNumber].createCellAngGet((cell) -> cell.setCellValue(value));
     }
 
-    public Cell createCellAngGet(RichTextString value) {
+    public Cell createCellAndGet(RichTextString value) {
         return customSheetWrappers[currSheetNumber].createCellAngGet((cell) -> cell.setCellValue(value));
     }
 
