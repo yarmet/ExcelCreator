@@ -4,12 +4,6 @@ package ruslan;
  * Created by ruslan on 22.05.2017.
  */
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.function.Consumer;
-
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.RichTextString;
@@ -18,6 +12,12 @@ import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.streaming.SXSSFSheet;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.function.Consumer;
 
 
 /**
@@ -49,6 +49,23 @@ public class XlsWriter {
     }
 
 
+    public void groupRows(int from, int to, boolean collapsed) {
+        if (from <= to) {
+            customSheetWrappers[currSheetNumber].getSheet().groupRow(from, to);
+            customSheetWrappers[currSheetNumber].getSheet().setRowGroupCollapsed(from, collapsed);
+        }
+    }
+
+    public void ungroupRows(int from, int to) {
+        if (from <= to) {
+            customSheetWrappers[currSheetNumber].getSheet().ungroupRow(from, to);
+        }
+    }
+
+    public Cell createEmptyCellAndGet() {
+        return customSheetWrappers[currSheetNumber].createCellAngGet(cell -> cell.setCellType(CellType.BLANK));
+    }
+
     public Cell createCellAndGet(Double value) {
         return value == null ? createEmptyCellAndGet() : createCellAndGet((double) value);
     }
@@ -58,33 +75,28 @@ public class XlsWriter {
     }
 
 
-    public Cell createEmptyCellAndGet() {
-        return customSheetWrappers[currSheetNumber].createCellAngGet((cell) -> cell.setCellType(CellType.BLANK));
-
-    }
-
     public Cell createCellAndGet(double value) {
-        return customSheetWrappers[currSheetNumber].createCellAngGet((cell) -> cell.setCellValue(value));
+        return customSheetWrappers[currSheetNumber].createCellAngGet(cell -> cell.setCellValue(value));
     }
 
     public Cell createCellAndGet(String value) {
-        return customSheetWrappers[currSheetNumber].createCellAngGet((cell) -> cell.setCellValue(value));
+        return customSheetWrappers[currSheetNumber].createCellAngGet(cell -> cell.setCellValue(value));
     }
 
     public Cell createCellAndGet(boolean value) {
-        return customSheetWrappers[currSheetNumber].createCellAngGet((cell) -> cell.setCellValue(value));
+        return customSheetWrappers[currSheetNumber].createCellAngGet(cell -> cell.setCellValue(value));
     }
 
     public Cell createCellAndGet(Date value) {
-        return customSheetWrappers[currSheetNumber].createCellAngGet((cell) -> cell.setCellValue(value));
+        return customSheetWrappers[currSheetNumber].createCellAngGet(cell -> cell.setCellValue(value));
     }
 
     public Cell createCellAndGet(Calendar value) {
-        return customSheetWrappers[currSheetNumber].createCellAngGet((cell) -> cell.setCellValue(value));
+        return customSheetWrappers[currSheetNumber].createCellAngGet(cell -> cell.setCellValue(value));
     }
 
     public Cell createCellAndGet(RichTextString value) {
-        return customSheetWrappers[currSheetNumber].createCellAngGet((cell) -> cell.setCellValue(value));
+        return customSheetWrappers[currSheetNumber].createCellAngGet(cell -> cell.setCellValue(value));
     }
 
     public void mergeCells(int firstRow, int lastRow, int firstColumn, int lastColumn) {
@@ -118,6 +130,11 @@ public class XlsWriter {
 
         public CustomSheetWrapper(SXSSFSheet sheet) {
             this.sheet = sheet;
+        }
+
+
+        public SXSSFSheet getSheet() {
+            return sheet;
         }
 
         private void createRow() {
